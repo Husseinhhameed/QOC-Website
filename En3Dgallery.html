@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D Gallery – QOC General Trading L.L.C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Basic SEO -->
+  <meta name="description" content="3D gallery showcasing glass, aluminum, and wood models as they may appear in architectural projects.">
+  <meta name="keywords" content="QOC, 3D gallery, glass, aluminum, wood, façades, finishes, Dubai">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="3D Gallery – QOC General Trading L.L.C">
+  <meta property="og:description" content="Realistic 3D previews of glass, aluminum, and wood applications.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="TEMPLATE-HERO-IMAGE.jpg">
+  <meta property="og:url" content="https://example.com/en/Gallery3d.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon + Manifest -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050814">
+
+  <!-- Modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    :root {
+      --bg-main: #050814;
+      --bg-secondary: #101528;
+      --accent: #e53935;
+      --accent-soft: rgba(229, 57, 53, 0.35);
+      --text-main: #ffffff;
+      --text-muted: #a7b0d0;
+      --glass-bg: rgba(10, 16, 35, 0.65);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --radius-xl: 24px;
+      --transition-fast: 0.25s ease;
+      --transition-med: 0.4s ease;
+      --container-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #192444 0, #050814 48%, #000000 100%);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ---------- Preloader ---------- */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #050814;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    #preloader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .preloader-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      animation: pulse 1.4s ease-in-out infinite;
+      filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.7));
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(0.9); opacity: 0.7; }
+      50%  { transform: scale(1.02); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Header (liquid glass) ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+
+      padding: 0.7rem 0;
+
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+        radial-gradient(circle at 0% 0%, rgba(103, 58, 183, 0.35) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(229, 57, 53, 0.35) 0, transparent 55%);
+      background-color: rgba(3, 6, 20, 0.82);
+
+      backdrop-filter: blur(22px) saturate(135%);
+      -webkit-backdrop-filter: blur(22px) saturate(135%);
+
+      border-bottom: 1px solid rgba(200, 215, 255, 0.20);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(0, 10, 40, 0.35);
+
+      transition:
+        background var(--transition-med),
+        box-shadow var(--transition-med),
+        border-bottom var(--transition-med),
+        transform var(--transition-med),
+        backdrop-filter var(--transition-med),
+        padding 0.35s ease;
+    }
+
+    header.scrolled {
+      padding: 0.35rem 0;
+
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+        radial-gradient(circle at 0% 0%, rgba(103, 58, 183, 0.50) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(229, 57, 53, 0.50) 0, transparent 55%);
+      background-color: rgba(5, 8, 20, 0.70);
+
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+      box-shadow:
+        0 22px 52px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.10);
+    }
+
+    .highlight-3d {
+      background: linear-gradient(135deg, #ffcc80, #ff7043, #ff5252);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+
+    /* Remove underline ONLY for this page title */
+    .section-title-gallery::after {
+      display: none;
+      content: none;
+    }
+
+    /* Remove padding space under the title */
+    .section-title-gallery {
+      padding-bottom: 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 0 0.5rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .logo-wrapper img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.6));
+      transition: width 0.35s ease, height 0.35s ease, transform 0.35s ease;
+    }
+
+    header.scrolled .logo-wrapper img {
+      width: 56px;
+      height: 56px;
+      transform: translateY(1px);
+    }
+
+    .brand-text .main {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.25rem 0;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffca28, #ff7043);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 80%;
+    }
+
+    .nav-links a.active {
+      color: var(--text-main);
+    }
+
+    .nav-links a.active::after {
+      width: 80%;
+    }
+
+    .lang-switch {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    /* Mini contact section */
+    .contact-mini-section {
+      padding: 3.2rem 0;
+      background:
+        radial-gradient(circle at top,
+          rgba(26, 35, 126, 0.18),
+          transparent 55%
+        ),
+        linear-gradient(145deg, #050814 0%, #030611 45%, #02030a 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    .contact-mini-box {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .contact-mini-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .contact-mini-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .contact-mini-btn {
+      margin: 0.8rem auto 0;
+      padding: 0.55rem 1.6rem;
+      font-size: 0.85rem;
+      display: inline-flex;
+      justify-content: center;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      outline: none;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      font-weight: 500;
+      white-space: nowrap;
+      font-family: inherit;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ff7043);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(229, 57, 53, 0.5);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 16px 36px rgba(229, 57, 53, 0.7);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: var(--text-main);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.26);
+      transform: translateY(-1px);
+    }
+
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 999px;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background: #fff;
+      position: relative;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-toggle span::before {
+      transform: translateY(-6px);
+    }
+
+    .nav-toggle span::after {
+      transform: translateY(6px);
+    }
+
+    .nav-toggle.active span {
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.active span::before {
+      transform: rotate(-90deg);
+    }
+
+    .nav-toggle.active span::after {
+      opacity: 0;
+    }
+
+    /* ---------- Generic section ---------- */
+    main {
+      padding-top: 6rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #90caf9;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.9rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffca28, #ff7043);
+      width: 70%;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- 3D models list ---------- */
+    .models-section {
+      background: radial-gradient(circle at top, rgba(26, 35, 126, 0.18), transparent 55%);
+    }
+
+    .models-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.8rem;
+    }
+
+    .model-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.2rem;
+    }
+
+    .model-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .model-viewer-card {
+      flex: 1 1 50%;
+      position: relative;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(5, 10, 28, 0.94);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.75);
+      padding: 0.85rem 0.9rem 1.1rem;
+      overflow: hidden;
+    }
+
+    .model-viewer-card::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: -20%;
+      top: -10%;
+      width: 70%;
+      height: 140%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(229, 57, 53, 0.35) 0, transparent 60%);
+      opacity: 0.85;
+      filter: blur(4px);
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .model-viewer-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05),
+        transparent 40%,
+        rgba(255, 255, 255, 0.03)
+      );
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .model-viewer-inner {
+      position: relative;
+      border-radius: 18px;
+      height: 320px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.09) 0, transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(229, 57, 53, 0.35) 0, transparent 55%),
+        linear-gradient(145deg, #050814 0%, #030611 40%, #02030a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .model-viewer-inner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 26px 55px rgba(0, 0, 0, 0.9);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .model-viewer-inner model-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
+      --poster-color: transparent;
+    }
+
+    .model-text {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .model-tag {
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+
+    .model-tag::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffca28, var(--accent));
+    }
+
+    .model-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .model-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+    }
+
+    .model-points {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .model-point {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .model-point::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #ffca28);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      background: #02030a;
+      padding: 1.4rem 0 1.7rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 992px) {
+      .models-list {
+        gap: 2.4rem;
+      }
+
+      .model-viewer-inner {
+        height: 280px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-menu-open .nav-links,
+      .nav-menu-open .nav-cta {
+        display: flex;
+      }
+
+      header .nav {
+        align-items: center;
+      }
+
+      .nav-menu-open .nav {
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .nav-menu-open .nav-links {
+        flex-direction: column;
+        width: 100%;
+        padding: 0.7rem 0 0.2rem;
+      }
+
+      .nav-menu-open .nav-cta {
+        width: 100%;
+        justify-content: flex-start;
+        padding-bottom: 0.7rem;
+      }
+
+      .model-row,
+      .model-row:nth-child(even) {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding-top: 5.5rem;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+      }
+
+      .model-viewer-inner {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <img src="QOC LOGO-p.png" alt="QOC Loading" class="preloader-logo">
+  </div>
+
+  <header id="site-header">
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="logo-wrapper">
+            <img src="QOC LOGO.png" alt="QOC General Trading L.L.C Logo">
+            <div class="brand-text">
+              <span class="main">QOC General Trading L.L.C</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="EnMain.html">About Us</a></li>
+          <li><a href="ENservices.html">Our Services</a></li>
+          <li><a href="En3Dgallery.html" class="active">3D Gallery</a></li>
+          <li><a href="Encontact.html">Contact Us</a></li>
+          <li><a href="Gallery3d.html" class="lang-switch">AR</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <button class="btn btn-primary" onclick="window.open('ENrewueste.html', '_blank')">
+            Request a Quote
+          </button>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Simple English section title -->
+    <section class="models-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title section-title-gallery">
+            <span class="highlight-3d">3D Models</span>
+            for glass, aluminum, and wood
+          </h2>
+
+          <p class="section-subtitle">
+            Illustrative models that help you visualize how materials will appear on façades and finishes
+            before final approval in the project.
+          </p>
+        </div>
+
+        <div class="models-list">
+          <!-- 1. Exterior glass façades -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="glass interface.glb"
+                  alt="3D model of an exterior glass façade"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Exterior glass</span>
+              <h3 class="model-title">Glass façade for a commercial building</h3>
+              <p class="model-desc">
+                A model showing a full-height glass façade over two floors, with
+                aluminum and glass composition that balances natural light and
+                thermal insulation requirements.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Ability to choose different glass thicknesses based on structural needs.</div>
+                <div class="model-point">Color options for glass and aluminum profiles to match the project identity.</div>
+                <div class="model-point">Suitable for main façades of commercial buildings and showrooms.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Interior glass partitions -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="office.glb"
+                  alt="3D model of interior glass partitions"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Interior glass</span>
+              <h3 class="model-title">Glass partitions for offices and admin spaces</h3>
+              <p class="model-desc">
+                Interior glass partitions that allow daylight to pass through while
+                maintaining privacy – ideal for offices and meeting rooms.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Options for clear, tinted, or sandblasted glass.</div>
+                <div class="model-point">Flexible layouts that can be modified in future fit-out stages.</div>
+                <div class="model-point">Suitable for spaces that require a modern, organized look.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Aluminum doors and windows -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="alumndoors.glb"
+                  alt="3D model of aluminum doors and windows"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Aluminum systems</span>
+              <h3 class="model-title">Aluminum doors and windows for residential buildings</h3>
+              <p class="model-desc">
+                A model showing aluminum doors and windows with double glazing,
+                suitable for residential projects that require enhanced thermal
+                and acoustic performance.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Multiple opening types: sliding, hinged, or tilt &amp; turn.</div>
+                <div class="model-point">RAL color options with the ability to match existing façades.</div>
+                <div class="model-point">Systems compliant with consultant specs for thickness and performance.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Aluminum & glass skylights -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="skylight.glb"
+                  alt="3D model of a glass skylight"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Skylights</span>
+              <h3 class="model-title">Skylight openings for roofs and top glazing</h3>
+              <p class="model-desc">
+                A glass skylight model supported by an engineered aluminum frame,
+                providing top lighting for corridors and halls with proper drainage
+                and insulation considerations.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Designs suitable for malls, large halls, and main corridors.</div>
+                <div class="model-point">Option to use reflective glass to reduce heat gain.</div>
+                <div class="model-point">Compatible with rainwater drainage systems and safety standards.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Wood wall cladding -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="woodwall.glb"
+                  alt="3D model of wooden wall cladding"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Wood for walls</span>
+              <h3 class="model-title">Wooden cladding for interior walls</h3>
+              <p class="model-desc">
+                A model showing wood panels for walls, adding warmth and a premium
+                feel to lobbies, meeting rooms, and reception areas in residential
+                and commercial projects.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Possibility to select multiple color tones within the same board family.</div>
+                <div class="model-point">Hidden fixing options to achieve a clean, unified surface.</div>
+                <div class="model-point">Ideal for projects focused on interior aesthetic details.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Wood flooring -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="parket.glb"
+                  alt="3D model of wooden flooring"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Wooden flooring</span>
+              <h3 class="model-title">Parquet flooring for residential and commercial spaces</h3>
+              <p class="model-desc">
+                A model illustrating parquet plank layout within an interior space,
+                highlighting grain direction and its effect on the perceived width
+                and depth of the room.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Thickness options suitable for residential or commercial use.</div>
+                <div class="model-point">Multiple installation patterns: straight, herringbone, and more.</div>
+                <div class="model-point">Easy to coordinate with furniture and wall colors.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Reflective glass façade -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="reflectglass.glb"
+                  alt="3D model of reflective glass façade"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Reflective glass</span>
+              <h3 class="model-title">Reflective, heat-insulating glass façades</h3>
+              <p class="model-desc">
+                A façade model with reflective solar-control glass and thermal/acoustic
+                insulation – ideal for projects targeting a contemporary appearance
+                and reduced heat loads on the building.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Reflective glass reduces heat transmission and improves indoor comfort.</div>
+                <div class="model-point">Can be combined with Low-E layers and double glazing for higher performance.</div>
+                <div class="model-point">Suitable for office towers, hotels, and large administrative buildings.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Industrial aluminum structures -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="indust.glb"
+                  alt="3D model of industrial aluminum structures"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Industrial structures</span>
+              <h3 class="model-title">Aluminum structures for heavy-duty projects</h3>
+              <p class="model-desc">
+                A model of engineered aluminum structures serving industrial and
+                commercial uses, such as protective grids, platforms, and lightweight
+                high-strength frames.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Designs based on special aluminum profiles to meet load requirements.</div>
+                <div class="model-point">Possibility to integrate with steel or glass components as per consultant drawings.</div>
+                <div class="model-point">Suitable for factories, warehouses, and service areas in large projects.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. Artistic glass and aluminum installations -->
+          <div class="model-row reveal">
+            <div class="model-viewer-card">
+              <div class="model-viewer-inner">
+                <model-viewer
+                  src="art.glb"
+                  alt="3D model of artistic glass and aluminum installation"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  ar
+                  shadow-intensity="1"
+                  exposure="0.9"
+                  interaction-prompt="auto"
+                ></model-viewer>
+              </div>
+            </div>
+
+            <div class="model-text">
+              <span class="model-tag">Art installations</span>
+              <h3 class="model-title">Glass and aluminum for sculptures and art pieces</h3>
+              <p class="model-desc">
+                A model showing how glass and aluminum can be used in artistic sculptures
+                and outdoor installations, with attention to aesthetics, lighting,
+                and stability under different weather conditions.
+              </p>
+              <div class="model-points">
+                <div class="model-point">Custom mounting solutions developed in coordination with the artist or designer.</div>
+                <div class="model-point">Possibility to integrate internal or back lighting within the glass forms.</div>
+                <div class="model-point">Ideal for public plazas, parks, institutional façades, and art exhibitions.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Mini contact section -->
+    <section class="contact-mini-section reveal">
+      <div class="container">
+        <div class="contact-mini-box">
+          <h3 class="contact-mini-title">Get in touch</h3>
+          <p class="contact-mini-text">
+            Do you have a project or a question? We’re happy to help you select the most suitable
+            solution for your façades and finishes.
+          </p>
+          <button class="btn btn-primary contact-mini-btn"
+            onclick="window.location.href='Contact.html'">
+            Contact us now
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          © <span id="year"></span> QOC General Trading L.L.C – All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="Services.html">Our Services</a>
+          <a href="Gallery3d.html">3D Gallery</a>
+          <a href="Contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.noupe.com/embed/019ac506000c7ff3aa6a7a5f09d003e8c973.js"></script>
+  <script>
+    // Update footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Header scroll state
+    const header = document.getElementById("site-header");
+    function toggleHeaderScroll() {
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    }
+    window.addEventListener("scroll", toggleHeaderScroll);
+    toggleHeaderScroll();
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    navToggle.addEventListener("click", () => {
+      document.body.classList.toggle("nav-menu-open");
+      navToggle.classList.toggle("active");
+    });
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Preloader
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      if (preloader) {
+        setTimeout(() => {
+          preloader.classList.add("hide");
+        }, 250);
+      }
+    });
+  </script>
+</body>
+</html>

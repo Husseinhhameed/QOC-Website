@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>QOC General Trading L.L.C – Wood, Aluminum & Glass Supply</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Basic SEO -->
+  <meta name="description" content="QOC General Trading L.L.C – Professional supply of wood, aluminum, and glass for commercial and residential projects, with strict commitment to specifications, timelines, and execution quality.">
+  <meta name="keywords" content="QOC, aluminum supply, wood supply, glass supply, finishing materials, building materials supplier, UAE, Dubai">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="QOC General Trading L.L.C – Wood, Aluminum & Glass Supply">
+  <meta property="og:description" content="Integrated wood, aluminum, and glass solutions for developers, contractors, and consulting offices.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="TEMPLATE-HERO-IMAGE.jpg">
+  <meta property="og:url" content="https://example.com">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon + Manifest -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050814">
+
+  <!-- Preload main hero image to improve LCP -->
+  <link rel="preload" as="image" href="hero.jpg">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    :root {
+      --bg-main: #050814;
+      --bg-secondary: #101528;
+      --accent: #e53935;
+      --accent-soft: rgba(229, 57, 53, 0.35);
+      --text-main: #ffffff;
+      --text-muted: #a7b0d0;
+      --glass-bg: rgba(10, 16, 35, 0.65);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --radius-xl: 24px;
+      --transition-fast: 0.25s ease;
+      --transition-med: 0.4s ease;
+      --container-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #192444 0, #050814 48%, #000000 100%);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ---------- Preloader ---------- */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #050814;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    #preloader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .preloader-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      animation: pulse 1.4s ease-in-out infinite;
+      filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.7));
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(0.9); opacity: 0.7; }
+      50%  { transform: scale(1.02); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Header (liquid glass) ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+
+      padding: 0.7rem 0;
+
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+        radial-gradient(circle at 0% 0%, rgba(103, 58, 183, 0.35) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(229, 57, 53, 0.35) 0, transparent 55%);
+      background-color: rgba(3, 6, 20, 0.82);
+
+      backdrop-filter: blur(22px) saturate(135%);
+      -webkit-backdrop-filter: blur(22px) saturate(135%);
+
+      border-bottom: 1px solid rgba(200, 215, 255, 0.20);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(0, 10, 40, 0.35);
+
+      transition:
+        background var(--transition-med),
+        box-shadow var(--transition-med),
+        border-bottom var(--transition-med),
+        transform var(--transition-med),
+        backdrop-filter var(--transition-med),
+        padding 0.35s ease;
+    }
+
+    header.scrolled {
+      padding: 0.35rem 0;
+
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+        radial-gradient(circle at 0% 0%, rgba(103, 58, 183, 0.50) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(229, 57, 53, 0.50) 0, transparent 55%);
+      background-color: rgba(5, 8, 20, 0.70);
+
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+      box-shadow:
+        0 22px 52px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.10);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 0 0.5rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .logo-wrapper img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.6));
+      transition: width 0.35s ease, height 0.35s ease, transform 0.35s ease;
+    }
+
+    header.scrolled .logo-wrapper img {
+      width: 56px;
+      height: 56px;
+      transform: translateY(1px);
+    }
+
+    .brand-text .main {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.25rem 0;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffca28, #ff7043);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 80%;
+    }
+
+    .nav-links a.active {
+      color: var(--text-main);
+    }
+
+    .nav-links a.active::after {
+      width: 80%;
+    }
+
+    .lang-switch {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.85rem;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      outline: none;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      font-weight: 500;
+      white-space: nowrap;
+      font-family: inherit;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ff7043);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(229, 57, 53, 0.5);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 16px 36px rgba(229, 57, 53, 0.7);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: var(--text-main);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.26);
+      transform: translateY(-1px);
+    }
+
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 999px;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background: #fff;
+      position: relative;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-toggle span::before {
+      transform: translateY(-6px);
+    }
+
+    .nav-toggle span::after {
+      transform: translateY(6px);
+    }
+
+    .nav-toggle.active span {
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.active span::before {
+      transform: rotate(-90deg);
+    }
+
+    .nav-toggle.active span::after {
+      opacity: 0;
+    }
+
+    /* ---------- Main / Hero slider ---------- */
+    main {
+      padding-top: 0;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6.5rem 0 4rem;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: 110%;
+      background-position: center;
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+      transition: filter 0.7s ease, transform 0.7s ease, opacity 0.7s ease;
+    }
+
+    .hero-bg.hero-bg-blur {
+      filter: blur(14px);
+      transform: scale(1.04);
+    }
+
+    @keyframes heroZoom {
+      from {
+        background-size: 110%;
+      }
+      to {
+        background-size: 120%;
+      }
+    }
+
+    .hero-bg-zoom {
+      animation: heroZoom 6s ease-out forwards;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 0, rgba(103, 58, 183, 0.55) 0, transparent 50%),
+        radial-gradient(circle at 80% 100%, rgba(229, 57, 53, 0.55) 0, transparent 50%),
+        linear-gradient(180deg, rgba(5, 8, 20, 0.78), rgba(5, 8, 20, 0.96));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.3rem;
+      text-align: center;
+    }
+
+    .hero-title,
+    .hero-subline,
+    .hero-main,
+    .hero-actions {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .hero-inner.hero-inner-animate .hero-title {
+      animation: heroTextIn 0.7s ease-out forwards;
+    }
+
+    .hero-inner.hero-inner-animate .hero-subline {
+      animation: heroTextIn 0.7s ease-out 0.15s forwards;
+    }
+
+    .hero-inner.hero-inner-animate .hero-main {
+      animation: heroTextIn 0.7s ease-out 0.3s forwards;
+    }
+
+    .hero-actions {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    @keyframes heroTextIn {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.2rem, 3.4vw + 1rem, 3.4rem);
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    .hero-text h1 span.highlight {
+      background: linear-gradient(135deg, #ffcc80, #ff7043, #ff5252);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subline {
+      font-size: 1.2rem;
+      color: #ffd9b3;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-text p.hero-main {
+      max-width: 38rem;
+      color: var(--text-muted);
+      margin: 0 auto 1.2rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-dots {
+      margin-top: 0.8rem;
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.28);
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.25s ease, background 0.25s ease, width 0.25s ease;
+    }
+
+    .hero-dot.hero-dot-active {
+      width: 24px;
+      background: linear-gradient(90deg, #ffca28, #ff7043);
+      transform: translateY(-1px);
+    }
+
+    /* ---------- Generic section ---------- */
+    section {
+      padding: 4.5rem 0;
+    }
+
+    section.dark-section {
+      background: radial-gradient(circle at top, rgba(40, 53, 147, 0.24), transparent 50%);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #90caf9;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 0.9rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffca28, #ff7043);
+      width: 0;
+      animation: section-underline 0.65s ease-out forwards;
+    }
+
+    @keyframes section-underline {
+      from { width: 0; opacity: 0; }
+      to { width: 70%; opacity: 1; }
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- About (cards only, gradient image background) ---------- */
+    .about-section {
+      position: relative;
+    }
+
+    .about-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("TEMPLATE-ABOUT.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.16;
+      mix-blend-mode: soft-light;
+    }
+
+    .about-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(40, 53, 147, 0.3), transparent 60%);
+    }
+
+    .about-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-panels {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .about-card {
+      border-radius: 18px;
+      padding: 1.1rem 1.25rem;
+      background: rgba(5, 10, 28, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.55);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .about-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .about-card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.1rem;
+    }
+
+    /* Disable old bullet & use icons */
+    .about-card-title::before {
+      content: none;
+    }
+
+    .about-card-title i {
+      font-size: 1.1rem;
+      color: #ffca28;
+      flex-shrink: 0;
+    }
+
+    /* ---------- Services ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top, rgba(63, 81, 181, 0.2), rgba(5, 8, 20, 0.98));
+      border: 1px solid var(--border-glass);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+      cursor: pointer;
+      transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med);
+    }
+
+    .service-image {
+      position: relative;
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .service-image.aluminum { background-image: url("alumn1.jpg"); }
+    .service-image.wood { background-image: url("wood1.jpg"); }
+    .service-image.glass { background-image: url("glass1.jpg"); }
+
+    .service-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(5, 8, 20, 0.95), rgba(5, 8, 20, 0));
+    }
+
+    .service-content {
+      padding: 1.2rem 1.2rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;
+    }
+
+    .service-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .service-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .service-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .service-tag {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 45px rgba(0, 0, 0, 0.7);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    /* ---------- 3D gallery ---------- */
+    .gallery-3d {
+      background: radial-gradient(circle at top, rgba(26, 35, 126, 0.18), transparent 55%);
+    }
+
+    .gallery-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 2.3rem;
+      align-items: center;
+    }
+
+    .gallery-preview {
+      position: relative;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(5, 10, 28, 0.94);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.75);
+      padding: 0.85rem 0.9rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      overflow: hidden;
+    }
+
+    .gallery-preview::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: -20%;
+      top: -10%;
+      width: 70%;
+      height: 140%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(229, 57, 53, 0.35) 0, transparent 60%);
+      opacity: 0.85;
+      filter: blur(4px);
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .gallery-preview::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05),
+        transparent 40%,
+        rgba(255, 255, 255, 0.03)
+      );
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .gallery-preview-main {
+      position: relative;
+      border-radius: 18px;
+      height: 340px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.09) 0, transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(229, 57, 53, 0.35) 0, transparent 55%),
+        linear-gradient(145deg, #050814 0%, #030611 40%, #02030a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .gallery-preview-main:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 26px 55px rgba(0, 0, 0, 0.9);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .gallery-preview-main model-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
+      --poster-color: transparent;
+    }
+
+    .gallery-text p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 0.94rem;
+    }
+
+    .gallery-points {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.55rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .gallery-point {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .gallery-point::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #ffca28);
+    }
+
+    /* ---------- Contact (Why us larger) ---------- */
+    .contact-section {
+      background: radial-gradient(circle at bottom, rgba(21, 101, 192, 0.23), transparent 55%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.2rem;
+      align-items: flex-start;
+    }
+
+    .contact-highlight-card {
+      border-radius: var(--radius-xl);
+      padding: 2.2rem 2.1rem;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(2, 6, 18, 0.98));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.75);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .contact-highlight-card h3 {
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+    }
+
+    .contact-highlight-card p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 0.92rem;
+    }
+
+    .contact-badges {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      font-size: 0.85rem;
+    }
+
+    .contact-badge {
+      border-radius: 14px;
+      padding: 0.6rem 0.7rem;
+      background: rgba(5, 10, 28, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+
+    .contact-highlight-card .cta-wrapper {
+      margin-top: 1.6rem;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      background: #02030a;
+      padding: 1.4rem 0 1.7rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 992px) {
+      .hero-inner {
+        max-width: 100%;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 6rem;
+        padding-bottom: 3.5rem;
+      }
+
+      .about-panels {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .gallery-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-menu-open .nav-links,
+      .nav-menu-open .nav-cta {
+        display: flex;
+      }
+
+      header .nav {
+        align-items: center;
+      }
+
+      .nav-menu-open .nav {
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .nav-menu-open .nav-links {
+        flex-direction: column;
+        width: 100%;
+        padding: 0.7rem 0 0.2rem;
+      }
+
+      .nav-menu-open .nav-cta {
+        width: 100%;
+        justify-content: flex-start;
+        padding-bottom: 0.7rem;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-badges {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-text h1 {
+        font-size: 2.1rem;
+      }
+
+      .hero {
+        padding-top: 5.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <img src="QOC LOGO-p.png" alt="QOC Loading" class="preloader-logo">
+  </div>
+
+  <!-- Header -->
+  <header id="site-header">
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="logo-wrapper">
+            <img src="QOC LOGO.png" alt="QOC General Trading L.L.C Logo">
+            <div class="brand-text">
+              <span class="main">QOC General Trading L.L.C</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="EnMain.html" class="active">About Us</a></li>
+          <li><a href="ENservices.html">Our Services</a></li>
+          <li><a href="En3Dgallery.html">3D Gallery</a></li>
+          <li><a href="Encontact.html">Contact Us</a></li>
+          <li><a href="index.html" class="lang-switch">AR</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <button class="btn btn-primary" onclick="window.open('ENrewueste.html', '_blank')">Request a Quote</button>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero slider -->
+    <section class="hero reveal" id="hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <h1 id="heroTitle" class="hero-title">
+              We equip your <span class="highlight">projects</span> with materials that speak for themselves
+            </h1>
+            <div class="hero-subline" id="heroSubline">
+              Wood, aluminum, and glass at the level of developers and consulting offices.
+            </div>
+            <p class="hero-main" id="heroMain">
+              At QOC General Trading L.L.C, we provide an end-to-end solution for supplying finishing materials from the source to the project site, with special care for engineering specifications, color consistency, and delivery schedules so that materials arrive ready for direct installation.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="scrollToSection('services')">
+                Explore Our Services
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-dots">
+            <button class="hero-dot hero-dot-active" data-slide="0" aria-label="Main slide"></button>
+            <button class="hero-dot" data-slide="1" aria-label="Aluminum slide"></button>
+            <button class="hero-dot" data-slide="2" aria-label="Glass slide"></button>
+            <button class="hero-dot" data-slide="3" aria-label="Wood slide"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About (cards) -->
+    <section id="about" class="about-section">
+      <div class="container about-inner reveal">
+        <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+          <div class="section-eyebrow">ABOUT US</div>
+          <h2 class="section-title">A supply partner that speaks the language of engineers and contractors</h2>
+          <p class="section-subtitle" style="text-align:left;">
+            We act as a trusted link between factory and site, helping you select the most suitable materials
+            and ensuring they arrive in line with specifications and on time.
+          </p>
+        </div>
+
+        <div class="about-panels">
+          <div class="about-card wide">
+            <div class="about-card-title">
+              <i class="fa-solid fa-layer-group"></i>
+              Precision in material selection
+            </div>
+            <div>
+              At QOC General Trading L.L.C, we focus on the details that matter to design and execution teams:
+              type, thickness, dimensions, color, and intended use, so each material is ready
+              to fit into the drawings with no surprises on site.
+            </div>
+            <div>
+              Our experience covers commercial and residential projects and modern façades, with high flexibility
+              in quantities and phased delivery schedules that match the different stages of your project.
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-title">
+              <i class="fa-solid fa-comments"></i>
+              Advisory before choosing materials
+            </div>
+            <div>
+              We help you choose the most suitable type of wood, aluminum, or glass
+              for usage conditions, budget, and aesthetic requirements.
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-title">
+              <i class="fa-solid fa-ruler-combined"></i>
+              Compliance with engineering specs
+            </div>
+            <div>
+              We adhere to the dimensions, thicknesses, and installation systems required by the consultant
+              to make approvals and on-site execution smoother.
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-title">
+              <i class="fa-solid fa-calendar-days"></i>
+              Flexible delivery scheduling
+            </div>
+            <div>
+              We can split deliveries across project phases while keeping
+              the same specifications and colors across the full quantity.
+            </div>
+          </div>
+
+          <div class="about-card">
+            <div class="about-card-title">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              Technical support during execution
+            </div>
+            <div>
+              We provide technical information and installation recommendations that help your execution teams
+              complete the work faster and more efficiently, with less waste on site.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="dark-section reveal">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">OUR SERVICES</div>
+          <h2 class="section-title">Integrated solutions in wood, aluminum & glass</h2>
+          <p class="section-subtitle">
+            Three main lines that can be combined into one integrated solution for building façades, interior finishes,
+            and custom works according to design.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Aluminum -->
+          <article class="service-card reveal">
+            <div class="service-image aluminum"></div>
+            <div class="service-content">
+              <h3 class="service-title">Aluminum systems supply</h3>
+              <p class="service-text">
+                Aluminum profiles for doors, windows, sliding systems, and glass façades, with multiple options
+                for glass thicknesses, colors, and thermal and acoustic insulation systems.
+              </p>
+              <div class="service-footer">
+                <span class="service-tag">Façades – Windows – Skylights</span>
+                <button class="btn btn-ghost" onclick="window.open('Services.html', '_blank')">Learn more</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Wood -->
+          <article class="service-card reveal">
+            <div class="service-image wood"></div>
+            <div class="service-content">
+              <h3 class="service-title">Wood and wooden finishes supply</h3>
+              <p class="service-text">
+                MDF and HDF boards, natural wood, parquet, and wall panels suitable for residential
+                and commercial spaces, with the option of cutting and finishing to size.
+              </p>
+              <div class="service-footer">
+                <span class="service-tag">Flooring – Doors – Wall cladding</span>
+                <button class="btn btn-ghost" onclick="window.open('Services.html', '_blank')">Learn more</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Glass -->
+          <article class="service-card reveal">
+            <div class="service-image glass"></div>
+            <div class="service-content">
+              <h3 class="service-title">Architectural glass supply</h3>
+              <p class="service-text">
+                Reflective, laminated, double, and heat-treated glass for façades, glass staircases, balustrades,
+                and internal partitions, all with high safety specifications.
+              </p>
+              <div class="service-footer">
+                <span class="service-tag">Safety glass – Insulated – Decorative</span>
+                <button class="btn btn-ghost" onclick="window.open('Services.html', '_blank')">Learn more</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D Gallery -->
+    <section id="gallery3d" class="gallery-3d reveal">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">3D GALLERY</div>
+          <h2 class="section-title">See materials as they will appear in your project</h2>
+          <p class="section-subtitle">
+            This section is dedicated to connecting the website with a 3D model viewer, so clients can explore façades,
+            doors, and interior finishes from a realistic perspective before actual execution.
+          </p>
+        </div>
+
+        <div class="gallery-layout">
+          <div class="gallery-preview reveal">
+            <div class="gallery-preview-main">
+              <model-viewer
+                id="materialViewer"
+                src="glass.glb"
+                alt="3D model of the material"
+                camera-controls
+                auto-rotate
+                auto-rotate-delay="0"
+                ar
+                shadow-intensity="1"
+                exposure="0.9"
+                interaction-prompt="auto"
+              ></model-viewer>
+            </div>
+          </div>
+
+          <div class="gallery-text reveal">
+            <p>
+              Through this viewer, you can rotate the model, zoom in,
+              and gradually experiment with multiple materials in dedicated interactive gallery pages.
+            </p>
+
+            <div class="gallery-points">
+              <div class="gallery-point">Realistic simulation of material appearance before execution.</div>
+              <div class="gallery-point">Shows details, reflections, and shadows in a life-like way.</div>
+              <div class="gallery-point">Can be expanded later into a complete interactive gallery.</div>
+            </div>
+
+            <button class="btn btn-primary" onclick="scrollToSection('gallery3d')">
+              View the 3D model
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact (Why us large) -->
+    <section id="contact" class="contact-section reveal">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-eyebrow">CONTACT US</div>
+          <h2 class="section-title">Let us prepare the materials for your next project</h2>
+          <p class="section-subtitle">
+            We act as a long-term supply partner supporting your design and execution teams, with high flexibility in quantities,
+            delivery scheduling, and consistently stable quality in every batch.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-highlight-card reveal">
+            <h3>Why clients choose us</h3>
+            <p>
+              Because we connect material quality, price clarity, and reliable timelines with after-supply support
+              when technical assistance or additional quantities are needed. We work with consulting offices,
+              contractors, and developers who need a supplier that understands drawings and technical specifications.
+            </p>
+            <p>
+              We care about color details, dimensions, and installation systems, and we support your execution team
+              with technical information that helps them complete the work quickly and efficiently, while reducing on-site waste.
+            </p>
+
+            <div class="contact-badges">
+              <div class="contact-badge">
+                • Flexible supply agreements tailored to developers and contractors.
+              </div>
+              <div class="contact-badge">
+                • Technical support in choosing the most suitable systems for façades or interiors.
+              </div>
+              <div class="contact-badge">
+                • Ability to match colors with existing systems in the project.
+              </div>
+              <div class="contact-badge">
+                • A trusted network of suppliers inside and outside the UAE.
+              </div>
+            </div>
+
+            <div class="cta-wrapper">
+              <button class="btn btn-primary" onclick="window.location.href='Contact.html'">
+                Contact us now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          © <span id="year"></span> QOC General Trading L.L.C – All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="Services.html">Our Services</a>
+          <a href="Gallery3d.html">3D Gallery</a>
+          <a href="Contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.noupe.com/embed/019ac506000c7ff3aa6a7a5f09d003e8c973.js"></script>
+  <script>
+    // Update footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Header scroll state
+    const header = document.getElementById("site-header");
+    function toggleHeaderScroll() {
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    }
+    window.addEventListener("scroll", toggleHeaderScroll);
+    toggleHeaderScroll();
+
+    // Smooth scroll with offset for header
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({
+        top,
+        behavior: "smooth"
+      });
+    }
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    navToggle.addEventListener("click", () => {
+      document.body.classList.toggle("nav-menu-open");
+      navToggle.classList.toggle("active");
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.body.classList.remove("nav-menu-open");
+        navToggle.classList.remove("active");
+      });
+    });
+
+    // Simple service details demo (kept for compatibility if used later)
+    function showServiceDetails(type) {
+      let title = "";
+      if (type === "aluminum") title = "Aluminum service details";
+      if (type === "wood") title = "Wood service details";
+      if (type === "glass") title = "Glass service details";
+      alert(title + "\n\nYou can later open a dedicated page or popup here with detailed specs and extra images.");
+    }
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Smooth inertia scrolling for wheel on large screens
+    (function () {
+      const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      if (isTouch) return;
+
+      let targetScroll = window.scrollY;
+      let scrolling = false;
+
+      function smoothStep() {
+        const current = window.scrollY;
+        const distance = targetScroll - current;
+        if (Math.abs(distance) > 0.5) {
+          const step = distance * 0.15;
+          window.scrollTo(0, current + step);
+          requestAnimationFrame(smoothStep);
+        } else {
+          window.scrollTo(0, targetScroll);
+          scrolling = false;
+        }
+      }
+
+      window.addEventListener("wheel", function (e) {
+        if (window.innerWidth <= 900) return;
+        e.preventDefault();
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        targetScroll += e.deltaY;
+        if (targetScroll < 0) targetScroll = 0;
+        if (targetScroll > maxScroll) targetScroll = maxScroll;
+        if (!scrolling) {
+          scrolling = true;
+          requestAnimationFrame(smoothStep);
+        }
+      }, { passive: false });
+    })();
+
+    // Hero slider configuration (texts and lazy backgrounds)
+    const heroSlides = [
+      {
+        id: 0,
+        bg: "hero.jpg",
+        title: 'We equip your <span class="highlight">projects</span> with materials that speak for themselves',
+        subline: "Wood, aluminum, and glass at the level of developers and consulting offices.",
+        text: "At QOC General Trading L.L.C, we provide an end-to-end solution for supplying finishing materials from the source to the project site, with special care for engineering specifications, color consistency, and delivery schedules so that materials arrive ready for direct installation."
+      },
+      {
+        id: 1,
+        bg: "alumnum.jpg",
+        title: 'Engineering-grade aluminum for façades that <span class="highlight">last and impress</span>',
+        subline: "Window, façade, and skylight systems tailored to modern projects.",
+        text: "We supply aluminum systems for glass façades, doors, and sliding units with multiple options for thermal and acoustic insulation and carefully selected glass thicknesses to balance aesthetics and performance in every project."
+      },
+      {
+        id: 2,
+        bg: "glass.jpg",
+        title: 'Architectural glass that opens the <span class="highlight">view</span> and protects the space',
+        subline: "From laminated to reflective and double-glazed solutions for different uses.",
+        text: "We equip your projects with safety and heat-treated glass for façades, balustrades, and internal partitions, with insulation and light-control options that match consultant requirements and end-user experience."
+      },
+      {
+        id: 3,
+        bg: "wood.jpg",
+        title: 'The warmth of <span class="highlight">wood</span> with finishes that elevate the space',
+        subline: "Flooring, doors, and wall cladding in carefully selected tones.",
+        text: "We offer a range of MDF, HDF, natural woods, and parquet, with cutting and finishing to size, to create interior spaces that feel more comfortable and premium."
+      }
+    ];
+
+    const heroBg = document.getElementById("heroBg");
+    const heroInner = document.querySelector(".hero-inner");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroSubline = document.getElementById("heroSubline");
+    const heroMain = document.getElementById("heroMain");
+    const heroDots = document.querySelectorAll(".hero-dot");
+    const heroSection = document.getElementById("hero");
+
+    const SLIDE_DURATION_MS = 5000;
+    let currentSlideIndex = 0;
+    let slideTimeout = null;
+    let touchStartX = null;
+
+    function restartHeroZoom() {
+      heroBg.classList.remove("hero-bg-zoom");
+      void heroBg.offsetWidth;
+      heroBg.classList.add("hero-bg-zoom");
+    }
+
+    function goToSlide(index, options = { instant: false }) {
+      if (index === currentSlideIndex || index < 0 || index >= heroSlides.length) return;
+
+      const slide = heroSlides[index];
+      const isInstant = options.instant === true;
+
+      currentSlideIndex = index;
+
+      if (!isInstant) {
+        heroBg.classList.add("hero-bg-blur");
+      }
+
+      heroTitle.innerHTML = slide.title;
+      heroSubline.textContent = slide.subline;
+      heroMain.textContent = slide.text;
+
+      heroBg.style.backgroundImage = "url('" + slide.bg + "')";
+      restartHeroZoom();
+
+      heroDots.forEach(dot => dot.classList.remove("hero-dot-active"));
+      if (heroDots[index]) {
+        heroDots[index].classList.add("hero-dot-active");
+      }
+
+      heroInner.classList.remove("hero-inner-animate");
+      void heroInner.offsetWidth;
+      heroInner.classList.add("hero-inner-animate");
+
+      setTimeout(() => {
+        heroBg.classList.remove("hero-bg-blur");
+      }, isInstant ? 0 : 700);
+
+      clearTimeout(slideTimeout);
+      slideTimeout = setTimeout(nextSlide, SLIDE_DURATION_MS);
+    }
+
+    function nextSlide() {
+      const nextIndex = (currentSlideIndex + 1) % heroSlides.length;
+      goToSlide(nextIndex);
+    }
+
+    function prevSlide() {
+      const prevIndex = (currentSlideIndex - 1 + heroSlides.length) % heroSlides.length;
+      goToSlide(prevIndex);
+    }
+
+    function initHeroSlider() {
+      const first = heroSlides[0];
+      heroBg.style.backgroundImage = "url('" + first.bg + "')";
+      heroTitle.innerHTML = first.title;
+      heroSubline.textContent = first.subline;
+      heroMain.textContent = first.text;
+      document.querySelector(".hero-actions").style.opacity = "1";
+
+      heroDots.forEach(dot => dot.classList.remove("hero-dot-active"));
+      if (heroDots[0]) {
+        heroDots[0].classList.add("hero-dot-active");
+      }
+
+      heroInner.classList.add("hero-inner-animate");
+      restartHeroZoom();
+
+      clearTimeout(slideTimeout);
+      slideTimeout = setTimeout(nextSlide, SLIDE_DURATION_MS);
+    }
+
+    heroDots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const slideIndex = parseInt(dot.getAttribute("data-slide"), 10);
+        if (!isNaN(slideIndex)) {
+          goToSlide(slideIndex);
+        }
+      });
+    });
+
+    heroSection.addEventListener("touchstart", (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    heroSection.addEventListener("touchend", (e) => {
+      if (touchStartX === null || !e.changedTouches || e.changedTouches.length === 0) return;
+      const touchEndX = e.changedTouches[0].clientX;
+      const diffX = touchEndX - touchStartX;
+
+      const SWIPE_THRESHOLD = 60;
+      if (Math.abs(diffX) > SWIPE_THRESHOLD) {
+        if (diffX > 0) {
+          prevSlide();
+        } else {
+          nextSlide();
+        }
+      }
+
+      touchStartX = null;
+    }, { passive: true });
+
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      if (preloader) {
+        setTimeout(() => {
+          preloader.classList.add("hide");
+        }, 250);
+      }
+      initHeroSlider();
+    });
+
+    document.querySelectorAll("img:not(.preloader-logo)").forEach(img => {
+      img.setAttribute("loading", "lazy");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>اتصل بنا – QOC General Trading L.L.C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Basic SEO -->
+  <meta name="description" content="تواصل مع QOC General Trading L.L.C للحصول على استشارات، عروض أسعار، ومعلومات حول خدمات الزجاج والألمنيوم والخشب.">
+  <meta name="keywords" content="QOC, اتصل بنا, زجاج, ألمنيوم, خشب, واجهات, تشطيبات, دبي">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="اتصل بنا – QOC General Trading L.L.C">
+  <meta property="og:description" content="نرحب بتواصلك معنا للاستفسار عن الخدمات أو طلب عرض سعر.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="TEMPLATE-HERO-IMAGE.jpg">
+  <meta property="og:url" content="https://example.com/contact.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon + Manifest -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#050814">
+
+  <!-- Arabic modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #050814;
+      --bg-secondary: #101528;
+      --accent: #e53935;
+      --accent-soft: rgba(229, 57, 53, 0.35);
+      --text-main: #ffffff;
+      --text-muted: #a7b0d0;
+      --glass-bg: rgba(10, 16, 35, 0.75);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --radius-xl: 24px;
+      --transition-fast: 0.25s ease;
+      --transition-med: 0.4s ease;
+      --container-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #192444 0, #050814 48%, #000000 100%);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ---------- Preloader ---------- */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #050814;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    #preloader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .preloader-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      animation: pulse 1.4s ease-in-out infinite;
+      filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.7));
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(0.9); opacity: 0.7; }
+      50%  { transform: scale(1.02); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Header (liquid glass) ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+
+      padding: 0.7rem 0;
+
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+        radial-gradient(circle at 0% 0%, rgba(103, 58, 183, 0.35) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(229, 57, 53, 0.35) 0, transparent 55%);
+      background-color: rgba(3, 6, 20, 0.82);
+
+      backdrop-filter: blur(22px) saturate(135%);
+      -webkit-backdrop-filter: blur(22px) saturate(135%);
+
+      border-bottom: 1px solid rgba(200, 215, 255, 0.20);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(0, 10, 40, 0.35);
+
+      transition:
+        background var(--transition-med),
+        box-shadow var(--transition-med),
+        border-bottom var(--transition-med),
+        transform var(--transition-med),
+        backdrop-filter var(--transition-med),
+        padding 0.35s ease;
+    }
+
+    header.scrolled {
+      padding: 0.35rem 0;
+
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+        radial-gradient(circle at 0% 0%, rgba(103, 58, 183, 0.50) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(229, 57, 53, 0.50) 0, transparent 55%);
+      background-color: rgba(5, 8, 20, 0.70);
+
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+      box-shadow:
+        0 22px 52px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.10);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 0 0.5rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .logo-wrapper img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.6));
+      transition: width 0.35s ease, height 0.35s ease, transform 0.35s ease;
+    }
+
+    header.scrolled .logo-wrapper img {
+      width: 56px;
+      height: 56px;
+      transform: translateY(1px);
+    }
+
+    .brand-text .main {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.25rem 0;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffca28, #ff7043);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 80%;
+    }
+.nav-links a.active {
+  color: var(--text-main);
+}
+
+.nav-links a.active::after {
+  width: 80%;           /* نفس قيمة الـ hover */
+}
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      outline: none;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+      font-weight: 500;
+      white-space: nowrap;
+      font-family: inherit;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ff7043);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(229, 57, 53, 0.5);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 16px 36px rgba(229, 57, 53, 0.7);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: var(--text-main);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.26);
+      transform: translateY(-1px);
+    }
+
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 999px;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background: #fff;
+      position: relative;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      right: 0;
+    }
+
+    .nav-toggle span::before {
+      transform: translateY(-6px);
+    }
+
+    .nav-toggle span::after {
+      transform: translateY(6px);
+    }
+
+    .nav-toggle.active span {
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.active span::before {
+      transform: rotate(-90deg);
+    }
+
+    .nav-toggle.active span::after {
+      opacity: 0;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-menu-open .nav-links,
+      .nav-menu-open .nav-cta {
+        display: flex;
+      }
+
+      header .nav {
+        align-items: center;
+      }
+
+      .nav-menu-open .nav {
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .nav-menu-open .nav-links {
+        flex-direction: column;
+        width: 100%;
+        padding: 0.7rem 0 0.2rem;
+      }
+
+      .nav-menu-open .nav-cta {
+        width: 100%;
+        justify-content: flex-start;
+        padding-bottom: 0.7rem;
+      }
+    }
+
+    /* ---------- Main layout ---------- */
+    main {
+      padding-top: 6rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      margin-bottom: 0.8rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffca28, #ff7043);
+      width: 70%;
+    }
+
+    .section-title-contact::after {
+      display: none;
+      content: none;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .highlight-contact {
+      background: linear-gradient(135deg, #ffcc80, #ff7043, #ff5252);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+
+    /* ---------- Contact section ---------- */
+    .contact-section {
+      background:
+        radial-gradient(circle at top, rgba(26, 35, 126, 0.22), transparent 58%),
+        linear-gradient(145deg, #050814 0%, #030611 45%, #02030a 100%);
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .contact-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-info-card {
+      background: rgba(6, 10, 28, 0.96);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow:
+        0 16px 34px rgba(0, 0, 0, 0.75);
+      padding: 1.8rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-info-card::before {
+      content: "";
+      position: absolute;
+      inset-inline-end: -10%;
+      top: -15%;
+      width: 45%;
+      height: 130%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.13) 0, transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      filter: blur(10px);
+    }
+
+    .contact-info-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .contact-intro-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .contact-intro-text {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .contact-items {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.75rem 0.8rem;
+      border-radius: 18px;
+      background: rgba(3, 7, 25, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-item-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-item-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .contact-microcopy {
+      margin-top: 0.35rem;
+      font-size: 0.78rem;
+      color: #c5e1a5;
+    }
+
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #ffcc80, #ff7043, #e53935);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.65);
+    }
+
+    .icon-circle svg {
+      width: 21px;
+      height: 21px;
+      fill: #fff;
+    }
+
+    .contact-note {
+      margin-top: 0.6rem;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- Contact form ---------- */
+    .contact-form-card {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(103, 58, 183, 0.35) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(229, 57, 53, 0.35) 0, transparent 55%),
+        rgba(5, 10, 28, 0.92);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85);
+      padding: 1.9rem 1.7rem 1.7rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 45%, rgba(255, 255, 255, 0.03));
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .contact-form-inner {
+      position: relative;
+    }
+
+    .contact-form-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-form-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .form-label {
+      font-size: 0.86rem;
+    }
+
+    .form-label span {
+      color: #ffcc80;
+      font-size: 0.8rem;
+    }
+
+    .form-control,
+    .form-textarea {
+      background: rgba(3, 7, 25, 0.92);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.55rem 0.8rem;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .form-control::placeholder,
+    .form-textarea::placeholder {
+      color: #6f7695;
+      font-size: 0.85rem;
+    }
+
+    .form-control:focus,
+    .form-textarea:focus {
+      border-color: #ff7043;
+      box-shadow: 0 0 0 1px rgba(255, 112, 67, 0.65);
+      background: rgba(7, 12, 32, 0.98);
+      transform: translateY(-1px);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-top: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .form-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .btn-submit {
+      padding-inline: 1.8rem;
+    }
+
+    /* ---------- WhatsApp Floating Button ---------- */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 22px;
+      left: 22px;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      background: #25D366;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+      z-index: 11000;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .whatsapp-fab:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.75);
+    }
+
+    .whatsapp-fab svg {
+      width: 26px;
+      height: 26px;
+      fill: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      .whatsapp-fab {
+        width: 50px;
+        height: 50px;
+        bottom: 18px;
+        left: 18px;
+      }
+
+      .whatsapp-fab svg {
+        width: 23px;
+        height: 23px;
+      }
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      background: #02030a;
+      padding: 1.4rem 0 1.7rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding-top: 5.5rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* ---------- SweetAlert glassmorphism styling ---------- */
+    .swal2-container {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background-color: rgba(3, 6, 20, 0.65);
+      direction: rtl;
+      text-align: right;
+    }
+
+    .qoc-alert-popup {
+      background: rgba(10, 16, 35, 0.85);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      color: #ffffff;
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 1.6rem 1.8rem 1.4rem;
+    }
+
+    .qoc-alert-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .qoc-alert-text {
+      font-size: 0.9rem;
+      color: #a7b0d0;
+    }
+
+    .qoc-alert-confirm {
+      min-width: 120px;
+      border-radius: 999px;
+      padding: 0.55rem 1.6rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(135deg, #e53935, #ff7043);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(229, 57, 53, 0.5);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .qoc-alert-confirm:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 16px 36px rgba(229, 57, 53, 0.7);
+    }
+
+    .swal2-icon.swal2-success {
+      border-color: #ffcc80;
+      color: #ffcc80;
+    }
+
+    .swal2-icon.swal2-error {
+      border-color: #e53935;
+      color: #e57373;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <img src="QOC LOGO-p.png" alt="QOC Loading" class="preloader-logo">
+  </div>
+
+  <!-- Header -->
+  <header id="site-header">
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="logo-wrapper">
+            <img src="QOC LOGO.png" alt="QOC General Trading L.L.C Logo">
+            <div class="brand-text">
+              <span class="main">QOC General Trading L.L.C</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="index.html">من نحن</a></li>
+          <li><a href="Services.html">خدماتنا</a></li>
+          <li><a href="Gallery3d.html">معرض ثلاثي الأبعاد</a></li>
+          <li><a href="Contact.html" class="active">اتصل بنا</a></li>
+          <li><a href="Encontact.html">EN</a></li>
+
+        </ul>
+
+        <div class="nav-cta">
+          <button class="btn btn-primary" onclick="window.location.href='Requeste.html'">
+            طلب عرض سعر
+          </button>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="القائمة">
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- CONTACT SECTION -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title section-title-contact">
+            <span class="highlight-contact">اتصل بنا</span> لنساعدك في مشروعك
+          </h2>
+          <p class="section-subtitle">
+            سواء كنت في مرحلة الفكرة أو في مرحلة التنفيذ، فريق QOC جاهز للإجابة عن استفساراتك
+            وتقديم عروض أسعار دقيقة لحلول الزجاج والألمنيوم والخشب.
+          </p>
+        </div>
+
+        <div class="contact-wrapper reveal">
+          <!-- Contact info -->
+          <div class="contact-info-card">
+            <div class="contact-info-inner">
+              <div>
+                <h3 class="contact-intro-title">معلومات الاتصال</h3>
+                <p class="contact-intro-text">
+                  تواصل معنا عبر الهاتف أو البريد الإلكتروني أو زرنا في مكتبنا لمناقشة تفاصيل مشروعك
+                  واختيار الحل الأنسب من حيث التكلفة والجودة والوقت.
+                </p>
+              </div>
+
+              <div class="contact-items">
+                <!-- Phone -->
+                <div class="contact-item">
+                  <div class="icon-circle" aria-hidden="true">
+                    <!-- Phone Icon -->
+                    <svg viewBox="0 0 24 24">
+                      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l1.98-1.98a1 1 0 01.96-.26 11.36 11.36 0 003.56.57 1 1 0 011 1v3.39a1 1 0 01-.89 1 16 16 0 01-7.11-1.92 15.73 15.73 0 01-5-5A16 16 0 013 4.18 1 1 0 014 3.29h3.4a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.26.96z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-item-title">هاتف / واتساب</div>
+                    <div class="contact-item-text">
+                      <div  dir="ltr" style="text-align: right;">+971 54 302 8598</div>
+                      <div  dir="ltr" style="text-align: right;">+971 -------</div>
+                    </div>
+                    <div class="contact-microcopy">
+                      الرد خلال 24 ساعة في أيام العمل الرسمية.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-item">
+                  <div class="icon-circle" aria-hidden="true">
+                    <!-- Mail Icon -->
+                    <svg viewBox="0 0 24 24">
+                      <path d="M4 5a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2H4zm0 2h16l-8 5-8-5zm0 3.236l7.386 4.616a1 1 0 001.228 0L20 10.236V17H4v-6.764z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-item-title">البريد الإلكتروني</div>
+                    <div class="contact-item-text">
+                      info@qoc-uae.com<br>
+                      sales@qoc-uae.com
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Address -->
+                <div class="contact-item">
+                  <div class="icon-circle" aria-hidden="true">
+                    <!-- Location Icon -->
+                    <svg viewBox="0 0 24 24">
+                      <path d="M12 2a7 7 0 00-7 7c0 4.38 4.22 8.84 6.17 10.7a1.25 1.25 0 001.66 0C14.78 17.84 19 13.38 19 9a7 7 0 00-7-7zm0 2a5 5 0 015 5c0 3.18-3 6.95-5 8.88-2-1.93-5-5.7-5-8.88a5 5 0 015-5zm0 3a2 2 0 100 4 2 2 0 000-4z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-item-title">العنوان</div>
+                    <div class="contact-item-text">
+                      QOC General Trading L.L.C<br>
+                      بيزنس باي – دبي، الإمارات العربية المتحدة<br>
+                     
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Working hours -->
+                <div class="contact-item">
+                  <div class="icon-circle" aria-hidden="true">
+                    <!-- Clock Icon -->
+                    <svg viewBox="0 0 24 24">
+                      <path d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2zm0 2a8 8 0 11-8 8 8.009 8.009 0 018-8zm-1 2h2v5.09l3.12 3.12-1.41 1.41L11 12.41z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-item-title">ساعات العمل</div>
+                    <div class="contact-item-text">
+                      من الإثنين إلى الجمعة: 9:00 صباحاً – 6:00 مساءً<br>
+                      السبت: 10:00 صباحاً – 3:00 مساءً<br>
+                      الأحد: عطلة رسمية
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="contact-note">
+                يمكن ترتيب زيارة ميدانية لموقع المشروع أو اجتماع في المكتب لعرض عينات الزجاج والألمنيوم
+                ومناقشة أفضل الحلول من الناحية الفنية والمالية.
+              </p>
+            </div>
+          </div>
+
+          <!-- Contact form -->
+          <div class="contact-form-card">
+            <div class="contact-form-inner">
+              <h3 class="contact-form-title">أرسل لنا رسالة</h3>
+              <p class="contact-form-subtitle">
+                املأ البيانات التالية وسنقوم بالرد عليك في أقرب وقت ممكن، مع إمكانية إرسال المخططات أو
+                وصف مختصر للمشروع لتقديم عرض دقيق.
+              </p>
+
+              <!-- Contact form using Web3Forms -->
+              <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+                <!-- Web3Forms required config -->
+                <input type="hidden" name="access_key" value="27bf1380-c5bd-48c8-ab25-8c6bb773a682">
+                <input type="hidden" name="subject" value="رسالة جديدة من صفحة اتصل بنا – QOC General Trading L.L.C">
+                <input type="hidden" name="from_name" value="QOC Contact Form">
+                <input type="hidden" name="from_email" value="no-reply@QOC.com">
+                <!-- Honeypot (spam protection) -->
+                <input type="text" name="botcheck" autocomplete="off" style="display:none;">
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="name">
+                      الاسم الكامل <span>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      placeholder="اكتب اسمك هنا"
+                      required
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="phone">
+                      رقم الهاتف <span>*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      class="form-control"
+                      placeholder="+971543028598"
+                      required
+                    >
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="email">
+                      البريد الإلكتروني
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      placeholder="info@qoc-uae.com"
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="subjectField">
+                      موضوع الرسالة
+                    </label>
+                    <input
+                      type="text"
+                      id="subjectField"
+                      name="user_subject"
+                      class="form-control"
+                      placeholder="طلب عرض سعر، استفسار عن خدمة، متابعة مشروع..."
+                    >
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="message">
+                    تفاصيل الرسالة <span>*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-textarea"
+                    placeholder="اخبرنا بالمزيد عن المشروع: نوع الواجهة، المواد المطلوبة، موقع المشروع، أو أي تفاصيل أخرى مهمة."
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-footer">
+                  <p class="form-hint">
+                    نلتزم بالحفاظ على سرية بياناتك وعدم مشاركتها مع أي طرف ثالث.
+                  </p>
+                  <button type="submit" class="btn btn-primary btn-submit" id="contactSubmitBtn">
+                    احصل على رد خلال 24 ساعة
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- WhatsApp Floating Button -->
+  <a
+    href="https://wa.me/971543028598"
+    class="whatsapp-fab"
+    target="_blank"
+    rel="noopener"
+    aria-label="تواصل عبر واتساب"
+  >
+    <svg viewBox="0 0 32 32">
+      <path d="M16.04 3C9.95 3 5 7.95 5 14.03c0 2.43.72 4.66 1.96 6.54L5 27l6.6-1.93A10.9 10.9 0 0016.04 25C22.12 25 27.07 20.05 27.07 13.97 27.07 7.9 22.12 3 16.04 3zm0 2.3c4.9 0 8.77 3.87 8.77 8.77 0 4.9-3.87 8.77-8.77 8.77-1.51 0-2.93-.38-4.19-1.06l-.3-.16-3.9 1.14 1.14-3.8-.2-.31a8.63 8.63 0 01-1.35-4.58c0-4.9 3.87-8.77 8.77-8.77zm-4.2 4.3c-.23 0-.6.09-.91.44-.3.34-1.2 1.17-1.2 2.86 0 1.69 1.22 3.32 1.39 3.55.17.22 2.4 3.84 5.9 5.23 2.92 1.15 3.52.92 4.15.86.63-.06 2.04-.83 2.33-1.64.29-.81.29-1.51.2-1.64-.09-.14-.32-.23-.67-.4-.35-.17-2.04-1.01-2.36-1.12-.32-.12-.56-.17-.8.17-.23.34-.92 1.12-1.13 1.35-.21.23-.42.26-.78.09-.35-.17-1.48-.55-2.82-1.76-1.04-.93-1.74-2.09-1.95-2.44-.2-.35-.02-.54.15-.71.16-.16.35-.42.52-.63.17-.21.23-.35.35-.59.12-.23.06-.44-.03-.61-.09-.17-.8-2-1.11-2.74-.3-.71-.58-.74-.81-.75z"/>
+    </svg>
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          © <span id="year"></span> QOC General Trading L.L.C – جميع الحقوق محفوظة.
+        </div>
+        <div class="footer-links">
+          <a href="index.html">الصفحة الرئيسية</a>
+          <a href="Services.html">خدماتنا</a>
+          <a href="Gallery3d.html">معرض 3D</a>
+          <a href="Contact.html">اتصل بنا</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src='https://www.noupe.com/embed/019ac506000c7ff3aa6a7a5f09d003e8c973.js'></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    // Create SweetAlert mixin with QOC styling
+    const qocAlert = Swal.mixin({
+      customClass: {
+        popup: "qoc-alert-popup",
+        title: "qoc-alert-title",
+        htmlContainer: "qoc-alert-text",
+        confirmButton: "qoc-alert-confirm"
+      },
+      buttonsStyling: false
+    });
+
+    // Update footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Header scroll state
+    const header = document.getElementById("site-header");
+    function toggleHeaderScroll() {
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    }
+    window.addEventListener("scroll", toggleHeaderScroll);
+    toggleHeaderScroll();
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    navToggle.addEventListener("click", () => {
+      document.body.classList.toggle("nav-menu-open");
+      navToggle.classList.toggle("active");
+    });
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Preloader
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      if (preloader) {
+        setTimeout(() => {
+          preloader.classList.add("hide");
+        }, 250);
+      }
+    });
+
+    // Contact form Web3Forms + SweetAlert
+    const contactForm = document.getElementById("contactForm");
+    const contactSubmitBtn = document.getElementById("contactSubmitBtn");
+
+    // Validate required fields in current form (simple global check)
+    function validateContactForm() {
+      const requiredFields = contactForm.querySelectorAll("[required]");
+      for (const field of requiredFields) {
+        if (!field.checkValidity()) {
+          field.reportValidity();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    async function submitContactForm(event) {
+      event.preventDefault();
+
+      if (!validateContactForm()) return;
+
+      const originalText = contactSubmitBtn.textContent;
+      contactSubmitBtn.disabled = true;
+      contactSubmitBtn.textContent = "جاري الإرسال...";
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          qocAlert.fire({
+            icon: "success",
+            title: "تم إرسال الرسالة بنجاح",
+            html: "شكرًا لتواصلك معنا، سيقوم فريقنا بالرد عليك في أقرب وقت ممكن.",
+            confirmButtonText: "حسناً"
+          });
+
+          contactForm.reset();
+          document.querySelector(".contact-section").scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          qocAlert.fire({
+            icon: "error",
+            title: "حدث خطأ أثناء الإرسال",
+            html: data.message || "يرجى المحاولة مرة أخرى لاحقاً.",
+            confirmButtonText: "حسناً"
+          });
+        }
+      } catch (error) {
+        qocAlert.fire({
+          icon: "error",
+          title: "تعذر الاتصال بالخادم",
+          html: "يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى.",
+          confirmButtonText: "حسناً"
+        });
+      } finally {
+        contactSubmitBtn.disabled = false;
+        contactSubmitBtn.textContent = originalText;
+      }
+    }
+
+    contactForm.addEventListener("submit", submitContactForm);
+  </script>
+</body>
+</html>
